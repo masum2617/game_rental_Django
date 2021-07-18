@@ -1,6 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Showcase -->
+<section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-3">
+      <div class="overlay p-5">
+        <h2 class="display-4 mb-3">
+         Browse Our Game Collection
+        </h2>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+        
+        <div class="search">
+          <form action="{% url 'search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-7">
+                
+                <input type="text" name="keywords" class="form-control" placeholder="Search Your Desired Game">
+              </div>
+
+              <div class="col-md-3">
+                <select name="genre" class="form-control" id="type">
+                  <option selected="true" disabled="disabled">Genre</option>
+    
+                    {% for key,value in genreCategory.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+
+              <div class="col-md-2">
+                <button class="btn btn-secondary btn-block" type="submit">Search</button>
+              </div>
+
+            </div>
+
+            <!-- <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+
+<!-- 
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
         <div class="row text-center">
@@ -10,10 +57,11 @@
         </div>
         </div>
     </div>
-</section>
+</section> -->
 
   <!-- Breadcrumb -->
-<section id="bc" class="mt-3">
+<!-- <section id="bc" class="mt-3">
+
     <div class="container">
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -25,7 +73,7 @@
         </ol>
         </nav>
     </div>
-</section>
+</section> -->
 
 
   <!-- Listings -->
@@ -36,7 +84,7 @@
           {% for listing in game_listings %}
           <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ listing.photo_1.url }}" alt="">
+                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                 <!-- <div class="card-img-overlay">
                   <h2>
                     <span class="badge badge-secondary text-white"></span>

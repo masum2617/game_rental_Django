@@ -34,8 +34,7 @@
         <a href="{% url 'games' %}" class="btn btn-light mb-4">Back</a>
         <div class="row">
             <div class="col-md-9">
-                <img src="{{ game_listing.photo_1.url}} " alt="game image" class="img-main img-fluid mb-3">
-
+                <img src="{{ game_listing.photo_main.url}} " alt="game image" class="img-main img-fluid mb-3">
                 <!-- Thumbnails -->
                 <div class="row mb-5 thumbs">
                    {% if game_listing.photo_2 %}
@@ -43,6 +42,7 @@
                         <a href="{{ game_listing.photo_2.url }}" data-lightbox="home-images">
                             <img src="{{ game_listing.photo_2.url }}" alt="" class="img-fluid">
                         </a>
+                        
                     </div>
                    {% endif %}
 
@@ -70,26 +70,91 @@
                  </div>
                 {% endif %}
 
-
-                {% if game_listing.photo_6 %}
-                <div class="col-md-2">
-                    <a href="{{ game_listing.photo_6.url }}" data-lightbox="home-images">
-                        <img src="{{ game_listing.photo_6.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-               {% endif %}
                 </div>
 
-                <!-- Description -->
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        {{ game_listing.game_description }}
-                    </div>
+   
+            </div>
+
+        <div class="col-md-3">
+            <div class="card mb-3">
+               
+                <div class="card-body">
+                <h4 class="card-title">{{ game_listing.game_title }}</h4>
+                <h6 class="text-secondary d-inline mr-2">Released:</h6><p class="d-inline"><small>{{ game_listing.release_date }}</small></p>
+                <h6 class="text-secondary d-inline mr-2">Genre:</h6><p class="d-inline"><small>{{ game_listing.genre }}</small></p>
                 </div>
-                
+            </div>
+                <button class="btn-primary btn-block btn-lg">Rent Now</button>
             </div>
         </div>
+
+
     </div>
+
+        <!-- Description -->
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="container">
+                    <h3 class="mb-4">Description</h3>
+                    <div>
+                        {{ game_listing.game_description }}
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+<!-- Game Details -->
+
+        <div class="row mb-2">
+            <div class="col-md-12 lightGreyBg">
+                <div class="container">
+                    <h3 class="mb-4">Game Details</h3>
+                    <div>
+                        <table class="table table-borderless">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Publisher</th>
+                                <td>{{ game_listing.publisher }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Rating</th>
+                                <td>{{ game_listing.rating }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+<!-- Specs and Requirement -->
+
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="container">
+                    <h3 class="mb-4">Specs & Requirement</h3>
+                    <div>
+                        <table class="table table-borderless">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Compatibility</th>
+                                <td>{{ game_listing.compatibility }}</td>
+                              </tr>
+                              {% if game_listing.hdd %}
+                                <tr>
+                                    <th scope="row">HDD</th>
+                                    <td>{{ game_listing.hdd }}</td>
+                                </tr>
+                              {% endif %}
+                            </tbody>
+                          </table>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
 </section>
+
+
 
 {% endblock %}
